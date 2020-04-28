@@ -31,7 +31,6 @@ int main()
     cout << solve((y ^ 2) == -16) << endl;                            // 0+4i or 0-4i
     cout << solve((y ^ 2) + 2 * y + 4 == 20 + 6 * y / 2 - y) << endl; // 4+0i or -4+0i
     cout << solve(y + 5i == 2 * y + 3i) << endl;                      // 0+2i
-    cout << solve(y - 7i == y - 9) << endl;
 
     return 0;
 }

@@ -37,33 +37,29 @@ public:
     //Operators.
 
     //operator+
-    const friend ComplexVariable operator+(const complex<double> c1, const ComplexVariable &c2);
+    const friend ComplexVariable operator+(const complex<double> &c1, const ComplexVariable &c2);
 
     const ComplexVariable operator+(const ComplexVariable &other) const
     {
-        ComplexVariable temp(_a + other._a, _b + other._b, _c + other._c);
-        return temp;
+        return ComplexVariable(_a + other._a, _b + other._b, _c + other._c);
     }
     const ComplexVariable operator+(complex<double> other) const
     {
-        ComplexVariable temp(_a + other, _b, _c);
-        return temp;
+        return ComplexVariable(_a + other, _b, _c);
     }
     //operator-
-    const friend ComplexVariable operator-(const complex<double> c1, const ComplexVariable &c2);
+    const friend ComplexVariable operator-(const complex<double> &c1, const ComplexVariable &c2);
 
     const ComplexVariable operator-(const ComplexVariable &other) const
     {
-        ComplexVariable temp(_a - other._a, _b - other._b, _c - other._c);
-        return temp;
+        return ComplexVariable(_a - other._a, _b - other._b, _c - other._c);
     }
     const ComplexVariable operator-(const complex<double> other) const
     {
-        ComplexVariable temp(_a - other, _b, _c);
-        return temp;
+        return ComplexVariable(_a - other, _b, _c);
     }
     //operator*
-    const friend ComplexVariable operator*(const complex<double> c1, const ComplexVariable &c2);
+    const friend ComplexVariable operator*(const complex<double> &c1, const ComplexVariable &c2);
 
     const ComplexVariable operator*(const ComplexVariable &other) const
     {
@@ -71,45 +67,42 @@ public:
     }
     const ComplexVariable operator*(const complex<double> other) const
     {
-        ComplexVariable temp(_a * other, _b * other, _c * other);
-        return temp;
+        return ComplexVariable(_a * other, _b * other, _c * other);
     }
     //operator/
-    const friend ComplexVariable operator/(const complex<double> c1, const ComplexVariable &c2);
+    const friend ComplexVariable operator/(const complex<double> &c1, const ComplexVariable &c2);
 
     const ComplexVariable operator/(const ComplexVariable &other) const
     {
         if (other._a != 0.0 && other._b == 0.0 && other._c == 0.0)
         {
-            ComplexVariable temp(_a / other._a, _b / other._a, _c / other._a);
-            return temp;
+            return ComplexVariable(_a / other._a, _b / other._a, _c / other._a);
         }
         else
             throw runtime_error("Can't divide by 0");
     }
-    const ComplexVariable operator/(const complex<double> other) const
+    const ComplexVariable operator/(const complex<double> &other) const
     {
         if (other != 0.0)
         {
-            ComplexVariable temp(_a / other, _b / other, _c / other);
-            return temp;
+            return ComplexVariable(_a / other, _b / other, _c / other);
         }
         else
             throw runtime_error("Can't divide by 0");
     }
     //operator==
-    const friend ComplexVariable operator==(const complex<double> c1, const ComplexVariable &c2);
+    const friend ComplexVariable operator==(const complex<double> &c1, const ComplexVariable &c2);
 
     const ComplexVariable operator==(const ComplexVariable &other) const
     {
-        return other;
+        return ComplexVariable(_a - other._a, _b - other._b, _c - other._c);
     }
-    const ComplexVariable operator==(const complex<double> other) const
+    const ComplexVariable operator==(const complex<double> &other) const
     {
-        return ComplexVariable();
+        return ComplexVariable(_a - other, _b, _c);
     }
     //operator^
-    const ComplexVariable operator^(const complex<double> other) const
+    const ComplexVariable operator^(const complex<double> &other) const
     {
         if (other != 2.0)
             throw runtime_error("Can't use operator^ >2");
@@ -117,13 +110,11 @@ public:
             throw runtime_error("Can't use operator^");
         else if (_a == 0.0 && _b != 0.0 && _c == 0.0) //bx
         {
-            ComplexVariable temp(_a, 0, _b);
-            return temp;
+            return ComplexVariable(_a, 0, _b);
         }
         else if (_a != 0.0 && _b != 0.0 && _c == 0.0)
         { //(a+bx)^2=a^2+2ab+(bx)^2
-            ComplexVariable temp(_a * _a, 2.0 * _a * _b, _b * _b);
-            return temp;
+            return ComplexVariable(_a * _a, 2.0 * _a * _b, _b * _b);
         }
         else
             throw runtime_error("Can't use operator^");
@@ -164,39 +155,33 @@ public:
     const RealVariable operator+(const RealVariable &other) const
     {
 
-        RealVariable temp(_a + other._a, _b + other._b, _c + other._c);
-        return temp;
+        return RealVariable(_a + other._a, _b + other._b, _c + other._c);
     }
     const RealVariable operator+(const double &other) const
     {
-        RealVariable temp(_a + other, _b, _c);
-        return temp;
+        return RealVariable(_a + other, _b, _c);
     }
     //operator-
     const friend RealVariable operator-(const double &r1, const RealVariable &r2);
 
     const RealVariable operator-(const RealVariable &other) const
     {
-        RealVariable temp(_a - other._a, _b - other._b, _c - other._c);
-        return temp;
+        return RealVariable(_a - other._a, _b - other._b, _c - other._c);
     }
     const RealVariable operator-(const double &other) const
     {
-        RealVariable temp(_a - other, _b, _c);
-        return temp;
+        return RealVariable(_a - other, _b, _c);
     }
     //operator*
     const friend RealVariable operator*(const double &r1, const RealVariable &r2);
 
     const RealVariable operator*(const RealVariable &other) const
     {
-        RealVariable temp(_a * other._a, _a * other._b + _b * other._a, _b * other._b);
-        return temp;
+        return RealVariable(_a * other._a, _a * other._b + _b * other._a, _b * other._b);
     }
     const RealVariable operator*(const double &other) const
     {
-        RealVariable temp(_a * other, _b * other, _c * other);
-        return temp;
+        return RealVariable(_a * other, _b * other, _c * other);
     }
     //operator/
     const friend RealVariable operator/(const double &r1, const RealVariable &r2);
@@ -205,8 +190,7 @@ public:
     {
         if (other._a != 0 && other._b == 0 && other._c == 0)
         {
-            RealVariable temp(_a / other._a, _b / other._a, _c / other._a);
-            return temp;
+            return RealVariable(_a / other._a, _b / other._a, _c / other._a);
         }
         else
             throw runtime_error("Can't divide by 0");
@@ -215,8 +199,7 @@ public:
     {
         if (other != 0)
         {
-            RealVariable temp(_a / other, _b / other, _c / other);
-            return temp;
+            return RealVariable(_a / other, _b / other, _c / other);
         }
         else
             throw runtime_error("Can't divide by 0");
@@ -226,9 +209,12 @@ public:
 
     const RealVariable operator==(const RealVariable &other) const
     {
-        return RealVariable();
+        return RealVariable(_a - other._a, _b - other._b, _c - other._c);
     }
-    const RealVariable operator==(const double &other) const;
+    const RealVariable operator==(const double &other) const
+    {
+        return RealVariable(_a - other, _b, _c);
+    }
     //operator^
     const RealVariable operator^(const double &other) const
     {
@@ -239,24 +225,20 @@ public:
             throw runtime_error("Can't use operator^");
         else if (_a == 0 && _b != 0 && _c == 0) //bx
         {
-            RealVariable temp(_a, 0, _b);
-            return temp;
+            return RealVariable(_a, 0, _b);
         }
         else if (_a != 0 && _b != 0 && _c == 0)
         { //(a+bx)^2=a^2+2ab+(bx)^2
-            RealVariable temp(_a * _a, 2 * _a * _b, _b * _b);
-            return temp;
+            return RealVariable(_a * _a, 2 * _a * _b, _b * _b);
         }
         else
             throw runtime_error("Can't use operator^");
     }
 };
+//*******************Solve functions*******************
 
-std::complex<double> solve(ComplexVariable &y);
+complex<double> solve(const ComplexVariable &y);
 
-double solve(RealVariable &x);
-
-template <typename T>
-double solve(T t);
+double solve(const RealVariable &x);
 
 } // namespace solver

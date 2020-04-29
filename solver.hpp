@@ -15,7 +15,7 @@ private:
 
 public:
     // Constructor.
-    ComplexVariable(const complex<double> &a = 0.0, const complex<double> &b = 0.0, const complex<double> &c = 0.0)
+    ComplexVariable(const complex<double> &a = 0.0, const complex<double> &b = 1.0, const complex<double> &c = 0.0)
         : _a(a), _b(b), _c(c)
     {
     }
@@ -34,7 +34,7 @@ public:
         return _c;
     }
 
-    //Operators.
+    //Operators:
 
     //operator+
     const friend ComplexVariable operator+(const complex<double> &c1, const ComplexVariable &c2);
@@ -104,21 +104,20 @@ public:
     //operator^
     const ComplexVariable operator^(const complex<double> &other) const
     {
-        // if (other.real() > 2.0)
-        //     throw runtime_error("Can't use operator^ >2");
-        // if (_c != 0.0)
-        //     throw runtime_error("Can't use operator^");
-        // else if (_a == 0.0 && _b != 0.0 && _c == 0.0) //bx
-        // {
-        //     return ComplexVariable(_a, 0, _b);
-        // }
-        // else if (_a != 0.0 && _b != 0.0 && _c == 0.0)
-        // { //(a+bx)^2=a^2+2ab+(bx)^2
-        //     return ComplexVariable(_a * _a, 2.0 * _a * _b, _b * _b);
-        // }
-        // else
-        //     throw runtime_error("Can't use operator^");
-        return ComplexVariable();
+        if (other.real() > 2.0)
+            throw runtime_error("Can't use operator^ >2");
+        if (_c != 0.0)
+            throw runtime_error("Can't use operator^");
+        else if (_a == 0.0 && _b != 0.0 && _c == 0.0) //bx
+        {
+            return ComplexVariable(_a, 0, _b);
+        }
+        else if (_a != 0.0 && _b != 0.0 && _c == 0.0)
+        { //(a+bx)^2=a^2+2ab+(bx)^2
+            return ComplexVariable(_a * _a, 2.0 * _a * _b, _b * _b);
+        }
+        else
+            throw runtime_error("Can't use operator^");
             }
 };
 
@@ -131,7 +130,7 @@ private:
 
 public:
     // Constructor.
-    RealVariable(const double &a = 0.0, const double &b = 0.0, const double &c = 0.0)
+    RealVariable(const double &a = 0.0, const double &b = 1.0, const double &c = 0.0)
         : _a(a), _b(b), _c(c)
     {
     }
@@ -219,22 +218,21 @@ public:
     //operator^
     const RealVariable operator^(const double &other) const
     {
-        // if (other > 2)
-        //     throw runtime_error("Can't use operator^ >2");
+        if (other > 2)
+            throw runtime_error("Can't use operator^ > 2");
 
-        // if (_c != 0)
-        //     throw runtime_error("Can't use operator^");
-        // else if (_a == 0 && _b != 0 && _c == 0) //bx
-        // {
-        //     return RealVariable(_a, 0, _b);
-        // }
-        // else if (_a != 0 && _b != 0 && _c == 0)
-        // { //(a+bx)^2=a^2+2ab+(bx)^2
-        //     return RealVariable(_a * _a, 2 * _a * _b, _b * _b);
-        // }
-        // else
-        //     throw runtime_error("Can't use operator^");
-        return RealVariable();
+        if (_c != 0)
+            throw runtime_error("Can't use operator^");
+        else if (_a == 0 && _b != 0 && _c == 0) //bx
+        {
+            return RealVariable(_a, 0, _b);
+        }
+        else if (_a != 0 && _b != 0 && _c == 0)
+        { //(a+bx)^2=a^2+2ab+(bx)^2
+            return RealVariable(_a * _a, 2 * _a * _b, _b * _b);
+        }
+        else
+            throw runtime_error("Can't use operator^");
     }
 };
 //*******************Solve functions*******************

@@ -19,7 +19,7 @@ std::complex<double> solve(const ComplexVariable &y)
     }
     else if (y.a() == 0.0 && y.b() != 0.0 && y.c() == 0.0)
         return 0.0;
-    else if (y.a() != 0.0 && y.c() != 0.0)
+    else if ((y.a() != 0.0 && y.c() != 0.0)||(y.b() != 0.0 && y.c() != 0.0))
     {
         complex<double> s = sqrt(y.b() * y.b() - 4.0 * y.a() * y.c());
         ans = (-y.b() + s) / (2.0 * y.c());

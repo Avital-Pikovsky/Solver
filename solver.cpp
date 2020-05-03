@@ -41,7 +41,7 @@ double solve(const RealVariable &x)
         return 0;
     else if(x.a() == 0 && x.b() == 0 && x.c() != 0)
         return 0;
-    else if (x.a() != 0 && x.c() != 0)
+    else if ((x.a() != 0 && x.c() != 0)||(x.b() != 0 && x.c() != 0))
     {
 
         if ((x.b() * x.b() - 4 * x.a() * x.c()) < 0)

@@ -10,7 +10,7 @@ class ComplexVariable
 
 private:
     complex<double> _a; // power 0
-    complex<double> _b; //power 1
+    complex<double> _b; // power 1
     complex<double> _c; // power 2
 
 public:
@@ -104,8 +104,8 @@ public:
     //operator^
     const ComplexVariable operator^(const complex<double> &other) const
     {
-        if (other.real() > 2.0)
-            throw runtime_error("Can't use operator^ >2");
+        if (other.real() > 2.0 || other.real() <= 0)
+            throw runtime_error("Can't use operator^");
         if (_c != 0.0)
             throw runtime_error("Can't use operator^");
         else if (_a == 0.0 && _b != 0.0 && _c == 0.0) //bx
@@ -218,11 +218,12 @@ public:
     //operator^
     const RealVariable operator^(const double &other) const
     {
-        if (other > 2)
-            throw runtime_error("Can't use operator^ > 2");
+        if (other > 2 || other <= 0)
+            throw runtime_error("Can't use operator^");
 
         if (_c != 0)
             throw runtime_error("Can't use operator^");
+
         else if (_a == 0 && _b != 0 && _c == 0) //bx
         {
             return RealVariable(_a, 0, _b);
